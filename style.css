@@ -1,0 +1,292 @@
+:root {
+       --primary-color: #A760FF;
+       --secondary-color:#CA82FF;
+       --thrirt-color:#371B58;
+       --text-color: #ffffff;
+       --grey-color:#CFD2CF;
+} 
+ * {
+       padding: 0;
+       margin: 0;
+       box-sizing: inherit;
+}
+body {
+       background-color: #CFD2CF;
+}
+html {
+       box-sizing: border-box;
+       font-family: 'Roboto Condensed', sans-serif;
+       max-width: 480px;
+}
+.musicPlayer{
+       position: fixed;
+       left:50%;
+       transform: translate(-50%);
+       background-color: var(--primary-color);
+       z-index: 99;
+       max-width:480px;
+       width:100%;
+       border-radius: 0 0 15px 15px;
+}
+.musicPlayer_maint{
+       height:100%;
+       width:100%;
+}
+.musicPlayer_maint .maint_head{
+       display:flex;
+       padding:15px 15px 7px 15px;
+       justify-content: space-between;
+}
+.musicPlayer_maint .maint_head div{
+       height:27px;
+       width:27px;
+       border-radius: 15px;
+       background-color:var(--secondary-color);
+       box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+       cursor: pointer;
+}
+.musicPlayer_maint .maint_head i{
+       position:relative;
+       transform:translate(-50%,50%);
+       left:50%;
+       color:var(--text-color);
+}
+.musicPlayer_maint .maint_play {
+       display:flex;
+       flex-direction:column;
+       align-items:center;
+       justify-content:space-between;
+}
+.musicPlayer_maint .maint_play .disk {
+  display: flex;
+  margin: auto;
+  width: 200px;
+  padding: 10px 0 10px 0;
+}
+.musicPlayer_maint .maint_play .disk img{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: #333;
+  background-size: cover;
+  margin: auto;
+}
+.musicPlayer_maint .maint_play span {
+       color:var(--text-color);
+}
+.musicPlayer_maint .maint_play .songInfo{
+       text-align:center;
+}
+.musicPlayer_maint .maint_play .songInfo span:first-child{
+       font-size:20px;
+}
+.musicPlayer_maint .maint_play .songInfo span:last-child{
+       font-size:12px;
+       font-family: 'Roboto', sans-serif;
+       font-weight:9;
+}
+.musicPlayer_maint .maint_button{
+       display: flex;
+       justify-content: space-evenly;
+       margin:10px 0 10px 0;
+       align-items:center;
+}
+.musicPlayer_maint .maint_button .btn-play{
+       
+       height:50px;
+       width:50px;
+       border-radius: 25px;
+       background-color:var(--secondary-color);
+       box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+       cursor:pointer;
+}
+.musicPlayer_maint .maint_button .btn-play i:last-child {
+  display: none;
+}
+.musicPlayer_maint .maint_button .is_playing i:last-child {
+  display: inline-block;
+  padding-left: 1.2px;
+}
+.musicPlayer_maint .maint_button .is_playing i:first-child {
+  display: none;
+}
+
+.musicPlayer_maint .maint_button div i{
+       font-size:20px;
+       color:var(--grey-color);
+       cursor: pointer;
+}
+.musicPlayer_maint .maint_button .btn-play i{
+       font-size: 20px;
+       color: var(--text-color);
+       transform: translate(126%,73%)
+}
+.musicPlayer_maint .maint_button .replays{
+  opacity: 0.4;
+  transition: all 2s ease;
+}
+.musicPlayer_maint .maint_button .isRandom{
+  opacity: 0.4;
+  transition: all 2s ease;
+}
+input[type=range] {
+       width: 90%;
+       margin: 5.15px 0;
+       
+       transform: translate(5%);
+       background-color: transparent;
+       -webkit-appearance: none;
+       padding: 15px 10px 20px 10px;
+     }
+     input[type=range]:focus {
+       outline: none;
+     }
+     input[type=range]::-webkit-slider-runnable-track {
+       background: #fff;
+       border: 0;
+       border-radius: 11.1px;
+       width: 100%;
+       height: 4.7px;
+       cursor: pointer;
+     }
+     input[type=range]::-webkit-slider-thumb {
+       margin-top: -5.15px;
+       width: 15px;
+       height: 15px;
+       background: #a760ff;
+       border: 4.6px solid #ffffff;
+       border-radius: 7px;
+       cursor: pointer;
+       -webkit-appearance: none;
+       
+     }
+     input[type=range]:focus::-webkit-slider-runnable-track {
+       background: #fff;
+     }
+     input[type=range]::-moz-range-track {
+       background: #fff;
+       border: 0;
+       border-radius: 11.1px;
+       width: 100%;
+       height: 4.7px;
+       cursor: pointer;
+     }
+     input[type=range]::-moz-range-thumb {
+       width: 15px;
+       height: 15px;
+       background: #a760ff;
+       border: 4.6px solid #ffffff;
+       border-radius: 7px;
+       cursor: pointer;
+     }
+     input[type=range]::-ms-track {
+       background: transparent;
+       border-color: transparent;
+       border-width: 8.75px 0;
+       color: transparent;
+       width: 100%;
+       height: 4.7px;
+       cursor: pointer;
+     }
+     input[type=range]::-ms-fill-lower {
+       background: #fff;
+       border: 0;
+       border-radius: 22.2px;
+     }
+     input[type=range]::-ms-fill-upper {
+       background: #fff;
+       border: 0;
+       border-radius: 22.2px;
+     }
+     input[type=range]::-ms-thumb {
+       width: 15px;
+       height: 15px;
+       background: #a760ff;
+       border: 4.6px solid #ffffff;
+       border-radius: 7px;
+       cursor: pointer;
+       margin-top: 0px;
+       /*Needed to keep the Edge thumb centred*/
+     }
+     input[type=range]:focus::-ms-fill-lower {
+       background: #fff;
+     }
+     input[type=range]:focus::-ms-fill-upper {
+       background: #fff;
+     }
+     /*TODO: Use one of the selectors from https://stackoverflow.com/a/20541859/7077589 and figure out
+     how to remove the virtical space around the range input in IE*/
+     @supports (-ms-ime-align:auto) {
+       /* Pre-Chromium Edge only styles, selector taken from hhttps://stackoverflow.com/a/32202953/7077589 */
+       input[type=range] {
+         margin: 0;
+         /*Edge starts the margin from the thumb, not the track as other browsers do*/
+       }
+     }
+
+.maint_playList {
+       padding: 10px;
+       position:absolute;
+       top: 450px;
+       width:100%;
+       max-width:450px;
+       width:100%;
+       left:50%;
+       transform: translate(-50%)
+       
+}
+
+.song {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  background-color: #fff;
+  padding: 8px 16px;
+  border-radius: 20px;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+}
+
+.song.active {
+  background-color: var(--secondary-color);
+}
+
+.song:active {
+  opacity: 0.8;
+}
+
+.song.active .option,
+.song.active .author,
+.song.active .title {
+  color: #fff;
+}
+
+.song .thumb {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-size: cover;
+  margin: 0 8px;
+}
+
+.song .body {
+  flex: 1;
+  padding: 0 16px;
+}
+
+.song .title {
+  font-size: 18px;
+  color: black;
+}
+
+.song .author {
+  font-size: 12px;
+  color: #999;
+}
+
+.song .option {
+  padding: 16px 8px;
+  color: #999;
+  font-size: 18px;
+}
+
+
