@@ -47,7 +47,7 @@ html {
 }
 .musicPlayer_maint .maint_head i{
        position:relative;
-       transform:translate(-50%,50%);
+       transform:translate(-50%,40%);
        left:50%;
        color:var(--text-color);
 }
