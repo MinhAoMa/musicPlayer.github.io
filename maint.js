@@ -49,6 +49,12 @@ const app = {
                      singer:'Adele',
                      path:'./songs/adele_someone_like_you_official_music_video_-2838001052823121463.mp3',
                      image:'./img/artworks-000071639681-fa6xyc-t500x500.jpg'
+              },
+              {
+                     name:'Lovely',
+                     singer:'Billie Eilish, Khalid',
+                     path:'./songs/billie_eilish_khalid_lovely_7157870383268602650.mp3',
+                     image:'./img/artworks-000414845502-pfu969-t500x500 (1).jpg'
               }
        ],
                         // render  play list 
