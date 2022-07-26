@@ -221,7 +221,17 @@ const app = {
                      
               })
               // handle play songs
-              
+              playList.addEventListener("click", (e)=>{
+                     const songNode = e.target.closest('.song:not(.active)')
+                     if(songNode){
+                            if(!e.target.closest('.option')){
+                                   _this.curentIndex = Number(songNode.getAttribute('data') )
+                                   _this.loadCurrentSong()
+                                   audio.play()
+                            }
+                            
+                     }
+              })
               // replay Song
               replayBtn.addEventListener("click",()=>{
                      if(this.isReplay){
