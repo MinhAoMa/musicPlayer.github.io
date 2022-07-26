@@ -225,8 +225,8 @@ const app = {
                      const songNode = e.target.closest('.song:not(.active)')
                      if(songNode){
                             if(!e.target.closest('.option')){
-                                   _this.curentIndex = Number(songNode.getAttribute('data') )
-                                   _this.loadCurrentSong()
+                                   this.curentIndex = Number(songNode.getAttribute('data') )
+                                   this.loadCurrentSong()
                                    audio.play()
                             }
                             
