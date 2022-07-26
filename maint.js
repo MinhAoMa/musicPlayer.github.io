@@ -57,6 +57,13 @@ const app = {
                      path:'./songs/billie_eilish_khalid_lovely_7157870383268602650.mp3',
                      image:'./img/artworks-000414845502-pfu969-t500x500 (1).jpg'
               }
+              ,
+              {
+                     name:`We Don't Talk Anymore `,
+                     singer:'Charlie Puth (ft.Selena Gomez) ',
+                     path:'./songs/charlie_puth_we_don_t_talk_anymore_feat_selena_gomez_official_video_-7377494420096729296.mp3',
+                     image:'./img/image5-12.jpg'
+              }
        ],
                         // render  play list 
        render: function(){
