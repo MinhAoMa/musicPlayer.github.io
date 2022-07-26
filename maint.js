@@ -54,7 +54,7 @@ const app = {
                      name:'Lovely',
                      singer:'Billie Eilish, Khalid',
                      path:'./songs/billie_eilish_khalid_lovely_7157870383268602650.mp3',
-                     image:'./img/artworks-000414845502-pfu969-t500x500.jpg'
+                     image:'./img/artworks-000414845502-pfu969-t500x500 (1).jpg'
               }
        ],
                         // render  play list 
