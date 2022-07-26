@@ -49,7 +49,8 @@ const app = {
                      singer:'Adele',
                      path:'./songs/adele_someone_like_you_official_music_video_-2838001052823121463.mp3',
                      image:'./img/artworks-000071639681-fa6xyc-t500x500.jpg'
-              },
+              }
+              ,
               {
                      name:'Lovely',
                      singer:'Billie Eilish, Khalid',
@@ -60,7 +61,7 @@ const app = {
                         // render  play list 
        render: function(){
               const htmls = this.songs.map((song,index) =>{
-                     return ` <div class="song ${index === this.curentIndex ?'active' :''}">
+                     return ` <div class="song ${index === this.curentIndex ?'active' :''} " data="${index}">
                      <div class="thumb" style="background-image: url('${song.image}')">
                      </div>
                      <div class="body">
