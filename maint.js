@@ -245,12 +245,14 @@ const app = {
                      if(this.isReplay){
                             this.isReplay = false
                             replayBtn.classList.remove('replays')
+                            audio.loop = false
                      }
                      else{
                             replayBtn.classList.add('replays')
                             this.isReplay = true
                             this.curentIndex = this.curentIndex
-                            this.loadCurrentSong()
+                            audio.loop = true
+                            audio.play()
                      }
               })
               // random Song
