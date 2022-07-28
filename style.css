@@ -289,5 +289,43 @@ input[type=range] {
   color: #999;
   font-size: 18px;
 }
+.song:not(.active) .thumb .wave{
+  display: none;
+}
+.song.active .thumb .wave{
+  height: 40%;
+  width: 40%;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%,-180%);
+}
+.song.active .thumb i{
+  display: none;
+}
+.song.active .thumb::before {
+  content: "";
+  display: block;
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  background-color: #333;
+  opacity: 0.4;
+}
+.song:not(.active) .thumb i{
+  display: none;
+}
+.song:not(.active):hover .thumb i{
+  display: block;
+  position: relative;
+  left: 100%;
+  color: var(--primary-color);
+  transform: translate(-60%,65%);
+  font-size:120%;
+  
+}
 
+.song:not(.active):hover{
+  opacity: 0.6;
+  transition: all 0.5s ease;
+}
 

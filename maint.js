@@ -70,6 +70,8 @@ const app = {
               const htmls = this.songs.map((song,index) =>{
                      return ` <div class="song ${index === this.curentIndex ?'active' :''} " data="${index}">
                      <div class="thumb" style="background-image: url('${song.image}')">
+                     <i class="fa-solid fa-play"></i>
+                     <img src="https://vikdang.github.io/Code_web_music_player/assets/img/SongActiveAnimation/icon-playing.gif"  alt="" class="wave">
                      </div>
                      <div class="body">
                             <h3 class="title">${song.name}</h3>
