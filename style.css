@@ -229,7 +229,6 @@ input[type=range] {
   left: 50%;
   transform: translate(-50%,-30%);
   display: flex;
-  
   align-items: center;
 }
 .volume i{
@@ -343,4 +342,12 @@ input[type=range] {
   opacity: 0.6;
   transition: all 0.5s ease;
 }
-
+/* mobile */
+@media only screen and (max-width:414px) {
+  .volume{
+    display: none;
+  }
+  .maint_playList{
+    top:450px;
+  }
+}
