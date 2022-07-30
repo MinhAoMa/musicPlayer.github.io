@@ -13,12 +13,16 @@ const replayBtn =$('.btn-loop')
 const randomBtn = $('.btn-switch')
 const randomList = []
 const playList = $('.maint_playList')
-
+const ctrlVolume = $('.volumeRange')
+const volume = $('.volume')
+const volIcon = $('.volIcon')
+const muted = $('.muted')
 const app = {
        curentIndex:0,
        isPlaying:false,
        isReplay:false,
        isRandom:false,
+       isMute:false,
        songs:[
               {
                      name:'Chúng ta không thuộc về nhau',
@@ -268,6 +272,41 @@ const app = {
                             this.isRandom = true
                      }
               })
+              //volume control
+              let valueVol;
+              ctrlVolume.addEventListener('input', ()=>{
+                            valueVol = ctrlVolume.value
+                            audio.volume = valueVol
+                            if(audio.volume === 0){
+                                   muted.classList.remove('fa-volume-high')
+                                   muted.classList.add('fa-volume-xmark')
+                                   this.isMute = true
+                            }
+                            else{
+                                   muted.classList.add('fa-volume-high')
+                                   muted.classList.remove('fa-volume-xmark')
+                                   this.isMute = false
+                            }
+                     
+                     
+              })
+              volIcon.addEventListener('click', ()=>{
+                     if(!this.isMute){ //true
+                            muted.classList.remove('fa-volume-high')
+                            muted.classList.add('fa-volume-xmark')
+                            this.isMute = true
+                            audio.volume = 0
+                            ctrlVolume.value = 0
+                     }
+                     else{ //false
+                            muted.classList.add('fa-volume-high')
+                            muted.classList.remove('fa-volume-xmark')
+                            this.isMute = false
+                            audio.volume = valueVol
+                            ctrlVolume.value = valueVol 
+                     }
+              })
+              
        },
        playRandomSong: function(){ 
               let newIndex 

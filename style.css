@@ -223,12 +223,27 @@ input[type=range] {
          /*Edge starts the margin from the thumb, not the track as other browsers do*/
        }
      }
+.volume{
+  width: 25% ;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%,-30%);
+  display: flex;
+  
+  align-items: center;
+}
+.volume i{
+  margin-bottom: 4px;
+  font-size: 17px;
+  color: var(--text-color);
+  cursor: pointer;
+}
+
 
 .maint_playList {
        padding: 10px;
        position:absolute;
-       top: 450px;
-       width:100%;
+       top: 500px;
        max-width:450px;
        width:100%;
        left:50%;
