@@ -26,45 +26,45 @@ const app = {
        songs:[
               {
                      name:'Chúng ta không thuộc về nhau',
-                     singer:'Sơn Tùng MTP',
+                     artis:'Sơn Tùng MTP',
                      path:'./songs/Ctktvn.mp3',
                      image:'./img/1470111712632_500.jpg'
               },
               {
                      name:'Blank space',
-                     singer:'taylor swift',
+                     artis:'taylor swift',
                      path:'./songs/blank space.mp3',
                      image:'./img/artworks-000104596134-1wfkwr-t500x500.jpg'
               },
               {
                      name:'Dust till dawn',
-                     singer:'Zayn(ft.Sia)',
+                     artis:'Zayn(ft.Sia)',
                      path:'./songs/dust till dawn.mp3',
                      image:'./img/artworks-000330707796-c9xqsh-t500x500.jpg'
               },
               {
                      name:'No lie',
-                     singer:'Sean Paul (ft.Dua Lipa)',
+                     artis:'Sean Paul (ft.Dua Lipa)',
                      path:'./songs/no lie.mp3',
                      image:'./img/artworks-000212816587-3pxa7y-t500x500.jpg'
               },
               {
                      name:'Someone Like You',
-                     singer:'Adele',
+                     artis:'Adele',
                      path:'./songs/adele_someone_like_you_official_music_video_-2838001052823121463.mp3',
                      image:'./img/artworks-000071639681-fa6xyc-t500x500.jpg'
               }
               ,
               {
                      name:'Lovely',
-                     singer:'Billie Eilish, Khalid',
+                     artis:'Billie Eilish, Khalid',
                      path:'./songs/billie_eilish_khalid_lovely_7157870383268602650.mp3',
                      image:'./img/artworks-000414845502-pfu969-t500x500 (1).jpg'
               }
               ,
               {
                      name:`We Don't Talk Anymore `,
-                     singer:'Charlie Puth (ft.Selena Gomez) ',
+                     artis:'Charlie Puth (ft.Selena Gomez) ',
                      path:'./songs/charlie_puth_we_don_t_talk_anymore_feat_selena_gomez_official_video_-7377494420096729296.mp3',
                      image:'./img/image5-12.jpg'
               }
@@ -79,7 +79,7 @@ const app = {
                      </div>
                      <div class="body">
                             <h3 class="title">${song.name}</h3>
-                            <p class="author">${song.singer}</p>
+                            <p class="author">${song.artis}</p>
                      </div>
                      <div class="option">
                             <i class="fas fa-ellipsis-h"></i>
@@ -106,7 +106,7 @@ const app = {
        //               // loading Curent Song
        loadCurrentSong: function(){
               songName.textContent = `${this.curentSong.name}`
-              artist.textContent = `${this.curentSong.singer}`
+              artist.textContent = `${this.curentSong.artis}`
               cover.src = `${this.curentSong.image}`
               audio.src = `${this.curentSong.path}`
               this.render()
