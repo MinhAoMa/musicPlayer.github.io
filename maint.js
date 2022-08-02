@@ -115,7 +115,7 @@ const app = {
                     // event zoom out disk play
        handleEvent: function(){
               let valueVol = 1;
-              const _this = this
+              
               const cdWidth = cd.offsetWidth
               // rotate cover image
               const rotateCover = cover.animate([
@@ -134,24 +134,23 @@ const app = {
               }
               // event click play button
               playBtn.addEventListener('click',()=>{
-                     if(_this.isPlaying){
+                     if(this.isPlaying){
                             audio.pause()
                      }
                      else{
                             audio.play()
                      }
-                     
               })
               // when audio is playing
               audio.addEventListener('play',()=>{
                      playBtn.classList.add('is_playing')      
-                     _this.isPlaying = true
+                     this.isPlaying = true
                      rotateCover.play()
               })
               // when audio is pause
               audio.addEventListener('pause',()=>{
                      playBtn.classList.remove('is_playing')      
-                     _this.isPlaying = false
+                     this.isPlaying = false
                      rotateCover.pause()
               })
               //song progress bar
@@ -164,15 +163,8 @@ const app = {
               })
               
               // changing progress
-              playBtn.onclick = () =>{
-                     if(!this.isPlaying){
-                            progress.onmousedown = ()=>{
-                                   this.changingProgress()
-                            }
-                            progress.onmouseup = ()=>{
-                                   audio.play()
-                            }
-                     }else{
+              playBtn.addEventListener('click',()=>{
+                     if(this.isPlaying){ // when audio is pause
                             progress.onmousedown = ()=>{
                                    this.changingProgress()
                             }
@@ -180,7 +172,15 @@ const app = {
                                    audio.pause()
                             }
                      }
-              }
+                     else{  // when audio is playing
+                            progress.onmousedown = ()=>{
+                                   this.changingProgress()
+                            }
+                            progress.onmouseup = ()=>{
+                                   audio.play()
+                            }
+                     }
+              })
               
               // Auto next song
               audio.addEventListener('ended',()=>{
@@ -322,6 +322,7 @@ const app = {
               })
               
        },
+       // changing progress
        changingProgress: function(){
               progress.addEventListener('input',()=>{
                      const progressSeeked = (audio.duration*progress.value)/100
