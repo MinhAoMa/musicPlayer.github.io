@@ -114,6 +114,7 @@ const app = {
        },
                     // event zoom out disk play
        handleEvent: function(){
+              let valueVol = 1;
               const _this = this
               const cdWidth = cd.offsetWidth
               // rotate cover image
@@ -139,6 +140,7 @@ const app = {
                      else{
                             audio.play()
                      }
+                     
               })
               // when audio is playing
               audio.addEventListener('play',()=>{
@@ -162,10 +164,24 @@ const app = {
               })
               
               // changing progress
-              progress.addEventListener('input',()=>{
-                     const progressSeeked = (audio.duration*progress.value)/100
-                     audio.currentTime = progressSeeked 
-              })
+              playBtn.onclick = () =>{
+                     if(!this.isPlaying){
+                            progress.onmousedown = ()=>{
+                                   this.changingProgress()
+                            }
+                            progress.onmouseup = ()=>{
+                                   audio.play()
+                            }
+                     }else{
+                            progress.onmousedown = ()=>{
+                                   this.changingProgress()
+                            }
+                            progress.onmouseup = ()=>{
+                                   audio.pause()
+                            }
+                     }
+              }
+              
               // Auto next song
               audio.addEventListener('ended',()=>{
                      if(!this.isReplay){ //false
@@ -195,7 +211,7 @@ const app = {
               })
               // handle next songs
               nextBtn.addEventListener('click',()=>{
-                     if(!this.isRandom){
+                     if(!this.isRandom){ // false 
                             if(this.curentIndex >=(this.songs.length - 1)){
                                    this.curentIndex = 0
                                    this.loadCurrentSong()
@@ -207,7 +223,7 @@ const app = {
                                    audio.play() 
                             }
                      }
-                     else{
+                     else{ //true
                             this.playRandomSong()
                             audio.play()
                      }
@@ -273,7 +289,7 @@ const app = {
                      }
               })
               //volume control
-              let valueVol;
+              
               ctrlVolume.addEventListener('input', ()=>{
                             valueVol = ctrlVolume.value
                             audio.volume = valueVol
@@ -305,6 +321,14 @@ const app = {
                      }
               })
               
+       },
+       changingProgress: function(){
+              progress.addEventListener('input',()=>{
+                     const progressSeeked = (audio.duration*progress.value)/100
+                     audio.currentTime = progressSeeked 
+                     audio.pause()
+                     
+              })
        },
        playRandomSong: function(){ 
               let newIndex 
