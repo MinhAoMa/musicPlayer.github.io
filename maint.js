@@ -163,6 +163,26 @@ const app = {
               })
               
               // changing progress
+                                      // for mobile devices
+              playBtn.addEventListener('click',()=>{
+                     if(this.isPlaying){ // when audio is pause
+                            progress.ontouchstart = ()=>{
+                                   this.changingProgress()
+                            }
+                            progress.ontouchend = ()=>{
+                                   audio.pause()
+                            }
+                     }
+                     else{  // when audio is playing
+                            progress.ontouchstart = ()=>{
+                                   this.changingProgress()
+                            }
+                            progress.ontouchend = ()=>{
+                                   audio.play()
+                            }
+                     }
+              })
+                                       // for PC 
               playBtn.addEventListener('click',()=>{
                      if(this.isPlaying){ // when audio is pause
                             progress.onmousedown = ()=>{
@@ -181,7 +201,6 @@ const app = {
                             }
                      }
               })
-              
               // Auto next song
               audio.addEventListener('ended',()=>{
                      if(!this.isReplay){ //false
@@ -250,6 +269,7 @@ const app = {
                      
                      
               })
+              
               // handle play songs
               playList.addEventListener("click", (e)=>{
                      const songNode = e.target.closest('.song:not(.active)')
