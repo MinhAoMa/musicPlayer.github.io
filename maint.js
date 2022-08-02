@@ -278,13 +278,12 @@ const app = {
                             valueVol = ctrlVolume.value
                             audio.volume = valueVol
                             if(audio.volume === 0){
-                                   muted.classList.remove('fa-volume-high')
-                                   muted.classList.add('fa-volume-xmark')
+                                   muted.classList.replace('fa-volume-high','fa-volume-xmark')
                                    this.isMute = true
+                                   valueVol = 1
                             }
                             else{
-                                   muted.classList.add('fa-volume-high')
-                                   muted.classList.remove('fa-volume-xmark')
+                                   muted.classList.replace('fa-volume-xmark','fa-volume-high')
                                    this.isMute = false
                             }
                      
@@ -292,18 +291,17 @@ const app = {
               })
               volIcon.addEventListener('click', ()=>{
                      if(!this.isMute){ //true
-                            muted.classList.remove('fa-volume-high')
-                            muted.classList.add('fa-volume-xmark')
+                            muted.classList.replace('fa-volume-high','fa-volume-xmark')
                             this.isMute = true
                             audio.volume = 0
                             ctrlVolume.value = 0
                      }
                      else{ //false
-                            muted.classList.add('fa-volume-high')
-                            muted.classList.remove('fa-volume-xmark')
+                            muted.classList.replace('fa-volume-xmark','fa-volume-high')
                             this.isMute = false
                             audio.volume = valueVol
                             ctrlVolume.value = valueVol 
+                            
                      }
               })
               
