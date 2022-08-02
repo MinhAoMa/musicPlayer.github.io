@@ -90,7 +90,7 @@ const app = {
               
               
        },
-                     // define Properties
+                     // test define Properties
        defineProperties: function(){
               Object.defineProperty(this,'curentSong',{
                      get: function(){
@@ -99,7 +99,7 @@ const app = {
               })
               
        },
-       //               // test curentSong
+       //               // render curentSong
        // curentSong: function(){
        //        return this.songs[this.curentIndex]
        // },
