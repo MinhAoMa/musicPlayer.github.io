@@ -1,5 +1,6 @@
 const $ = document.querySelector.bind(document)
 const $$ = document.querySelectorAll.bind(document)
+let curentIndex = Number(window.localStorage.getItem("saveCurentIndex")) || 0
 const songName = $('.songName')
 const artist = $('.artist')
 const cover = $('.cover')
@@ -18,7 +19,7 @@ const volume = $('.volume')
 const volIcon = $('.volIcon')
 const muted = $('.muted')
 const app = {
-       curentIndex:0,
+       
        isPlaying:false,
        isReplay:false,
        isRandom:false,
@@ -72,7 +73,7 @@ const app = {
                         // render  play list 
        render: function(){
               const htmls = this.songs.map((song,index) =>{
-                     return ` <div class="song ${index === this.curentIndex ?'active' :''} " data="${index}">
+                     return ` <div class="song ${index === curentIndex ?'active' :''} " data="${index}">
                      <div class="thumb" style="background-image: url('${song.image}')">
                      <i class="fa-solid fa-play"></i>
                      <img src="https://vikdang.github.io/Code_web_music_player/assets/img/SongActiveAnimation/icon-playing.gif"  alt="" class="wave">
@@ -94,7 +95,7 @@ const app = {
        defineProperties: function(){
               Object.defineProperty(this,'curentSong',{
                      get: function(){
-                            return this.songs[this.curentIndex]
+                            return this.songs[curentIndex]
                      }
               })
               
@@ -109,8 +110,8 @@ const app = {
               artist.textContent = `${this.curentSong.artis}`
               cover.src = `${this.curentSong.image}`
               audio.src = `${this.curentSong.path}`
+              this.saveData()
               this.render()
-              
        },
                     // event zoom out disk play
        handleEvent: function(){
@@ -206,12 +207,12 @@ const app = {
                      if(!this.isReplay){ //false
                             if(!this.isRandom){ // false
                                    if(this.curentIndex >=(this.songs.length - 1)){
-                                          this.curentIndex = 0
+                                          curentIndex = 0
                                           this.loadCurrentSong()
                                           audio.play()
                                    }
                                    else{ //true
-                                          this.curentIndex+=1;
+                                          curentIndex+=1;
                                           this.loadCurrentSong()
                                           audio.play()
                                    }
@@ -231,13 +232,13 @@ const app = {
               // handle next songs
               nextBtn.addEventListener('click',()=>{
                      if(!this.isRandom){ // false 
-                            if(this.curentIndex >=(this.songs.length - 1)){
-                                   this.curentIndex = 0
+                            if(curentIndex >=(this.songs.length - 1)){
+                                   curentIndex = 0
                                    this.loadCurrentSong()
                                    audio.play()
                             }
                             else{
-                                   this.curentIndex+=1;
+                                   curentIndex+=1;
                                    this.loadCurrentSong()
                                    audio.play() 
                             }
@@ -251,13 +252,13 @@ const app = {
               // handle prev songs
               prevBtn.addEventListener('click',()=>{
                      if(!this.isRandom){
-                            if(this.curentIndex <= 0){
-                                   this.curentIndex = (this.songs.length -1)
+                            if(curentIndex <= 0){
+                                   curentIndex = (this.songs.length -1)
                                    this.loadCurrentSong()
                                    audio.play()
                             }
                             else{
-                                   this.curentIndex-=1;
+                                   curentIndex-=1;
                                    this.loadCurrentSong()
                                    audio.play()
                             }
@@ -275,8 +276,9 @@ const app = {
                      const songNode = e.target.closest('.song:not(.active)')
                      if(songNode){
                             if(!e.target.closest('.option')){
-                                   this.curentIndex = Number(songNode.getAttribute('data') )
+                                   curentIndex = Number(songNode.getAttribute('data') )
                                    this.loadCurrentSong()
+                                   
                                    audio.play()
                             }
                             
@@ -292,7 +294,7 @@ const app = {
                      else{
                             replayBtn.classList.add('replays')
                             this.isReplay = true
-                            this.curentIndex = this.curentIndex
+                            curentIndex = curentIndex
                             audio.loop = true
                             audio.play()
                      }
@@ -355,9 +357,14 @@ const app = {
               let newIndex 
                      do{
                             newIndex = Math.floor(Math.random()*this.songs.length)       
-                     }while(newIndex === this.curentIndex)
+                     }while(newIndex === curentIndex)
                      this.curentIndex = newIndex
                      this.loadCurrentSong()
+                     
+       },
+                  // loading song index listen before
+       saveData: function(){
+              window.localStorage.setItem("saveCurentIndex",`${curentIndex}`)
        },
        start: function(){
               // handle event
@@ -367,8 +374,6 @@ const app = {
               this.defineProperties()
               this.loadCurrentSong()
               this.render()
-              
        }
-       
 } 
 app.start();
