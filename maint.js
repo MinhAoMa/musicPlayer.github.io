@@ -1,6 +1,6 @@
 const $ = document.querySelector.bind(document)
 const $$ = document.querySelectorAll.bind(document)
-
+const PLAYER_STORAGE_KEY = "MUSIC_PLAYER"
 const songName = $('.songName')
 const artist = $('.artist')
 const cover = $('.cover')
@@ -20,6 +20,11 @@ const volIcon = $('.volIcon')
 const muted = $('.muted')
 const app = {
        curentIndex : Number(window.localStorage.getItem("saveCurentIndex")) || 0,
+       config:JSON.parse(window.localStorage.getItem("PLAYER_STORAGE_KEY")) || {},
+       setConfig:function(key,value){
+              this.config[key] = value;
+              window.localStorage.setItem("PLAYER_STORAGE_KEY", JSON.stringify(this.config));
+       },
        isPlaying:false,
        isReplay:false,
        isRandom:false,
@@ -113,6 +118,15 @@ const app = {
               audio.src = `${this.curentSong.path}`
               this.saveData()
               this.render()
+       },
+       loadConfig:function(){
+              this.isRandom = this.config.isRandom
+              this.isReplay = this.config.isReplay
+       },
+       loadUI:function(){
+              window.onload = ()=>{
+
+              }
        },
                     // event zoom out disk play
        handleEvent: function(){
@@ -268,8 +282,6 @@ const app = {
                             this.playRandomSong()
                             audio.play()
                      }
-                     
-                     
               })
               
               // handle play songs
@@ -279,7 +291,6 @@ const app = {
                             if(!e.target.closest('.option')){
                                    this.curentIndex = Number(songNode.getAttribute('data') )
                                    this.loadCurrentSong()
-                                   
                                    audio.play()
                             }
                             
@@ -299,6 +310,7 @@ const app = {
                             audio.loop = true
                             audio.play()
                      }
+                     this.setConfig("isReplay",this.isReplay)
               })
               // random Song
               randomBtn.addEventListener('click',()=>{
@@ -310,6 +322,7 @@ const app = {
                             randomBtn.classList.add('isRandom')
                             this.isRandom = true
                      }
+                     this.setConfig("isRandom",this.isRandom)
               })
               //volume control
               
@@ -325,7 +338,6 @@ const app = {
                                    muted.classList.replace('fa-volume-xmark','fa-volume-high')
                                    this.isMute = false
                             }
-                     
                      
               })
               volIcon.addEventListener('click', ()=>{
@@ -345,7 +357,7 @@ const app = {
               })
               
        },
-       // changing progress
+                        // changing progress
        changingProgress: function(){
               progress.addEventListener('input',()=>{
                      const progressSeeked = (audio.duration*progress.value)/100
@@ -354,6 +366,7 @@ const app = {
                      
               })
        },
+                   // play random song
        playRandomSong: function(){ 
               let newIndex 
                      do{
@@ -363,11 +376,12 @@ const app = {
                      this.loadCurrentSong()
                      
        },
-                  // loading song index listen before
+                         // loading song index listen before
        saveData: function(){
               window.localStorage.setItem("saveCurentIndex",`${this.curentIndex}`)
        },
        start: function(){
+              this.loadConfig()
               // handle event
               this.handleEvent()
               //define property
@@ -375,6 +389,9 @@ const app = {
               this.defineProperties()
               this.loadCurrentSong()
               this.render()
+              randomBtn.classList.toggle('isRandom',this.isRandom)
+              replayBtn.classList.toggle('replays',this.isReplay)
+              
        }
 } 
 app.start();
